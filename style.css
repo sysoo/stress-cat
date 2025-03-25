@@ -1,0 +1,12 @@
+.progress-bar {
+    height: 20px;
+    background: #eee;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+#stress-bar {
+    height: 100%;
+    background: #ff6b6b;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
