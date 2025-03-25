@@ -1,57 +1,48 @@
-body {
-    font-family: 'Comic Sans MS', cursive;
-    background: #ffe6f2;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-h1 {
-    color: #2c3e50;
-}
-
-#cat {
-    font-size: 100px;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.1s;
-    margin: 20px 0;
-}
-
-#cat:active {
-    transform: scale(1.1);
-}
-
-.cat-neutral { color: #555; }
-.cat-happy { color: #ff9a00; }
-.cat-super-happy { color: #ff4d4d; }
-
-.stats {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 10px 0;
-}
-
-.progress-bar {
-    height: 20px;
-    background: #eee;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-#stress-bar {
-    height: 100%;
-    background: #ff6b6b;
-    width: 100%;
-    transition: width 0.3s;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const cat = document.getElementById('cat');
+    const counter = document.getElementById('counter');
+    const stressDisplay = document.getElementById('stress-level');
+    const stressBar = document.getElementById('stress-bar');
+    
+    let petCount = 0;
+    let stressLevel = 100;
+    
+    // Preload sound
+    const purrSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-cat-purring-119.mp3');
+    
+    cat.addEventListener('click', () => {
+        // Update stats
+        petCount++;
+        stressLevel = Math.max(0, stressLevel - 5);
+        
+        // Play sound
+        purrSound.currentTime = 0; // Reset sound if already playing
+        purrSound.play();
+        
+        // Update UI
+        counter.textContent = petCount;
+        stressDisplay.textContent = `${stressLevel}%`;
+        stressBar.style.width = `${stressLevel}%`;
+        
+        // Change cat mood
+        if (stressLevel > 50) {
+            cat.className = 'cat-neutral';
+            cat.textContent = '🐱';
+        } else if (stressLevel > 10) {
+            cat.className = 'cat-happy';
+            cat.textContent = '😸';
+        } else {
+            cat.className = 'cat-super-happy';
+            cat.textContent = '😻';
+        }
+        
+        // Bounce animation
+        cat.style.transform = 'scale(1.2)';
+        setTimeout(() => {
+            cat.style.transform = 'scale(1)';
+        }, 100);
+    });
+    
+    // Initialize stress bar
+    stressBar.style.width = '100%';
+});
