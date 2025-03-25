@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let stressLevel = 100;
     
     // Preload sound
-    const purrSound = new Audio('https://www.soundjay.com/meow/sounds/cat-meow-01.mp3');
+    const purrSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=');
     
     cat.addEventListener('click', () => {
         // Update stats
