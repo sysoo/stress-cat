@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let stressLevel = 100;
     
     // Preload sound
-    const purrSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-cat-purring-119.mp3');
+    const purrSound = new Audio('https://www.soundjay.com/meow/sounds/cat-meow-01.mp3');
     
     cat.addEventListener('click', () => {
         // Update stats
